@@ -33,10 +33,9 @@ def parseabc(iterable):
     return Series(datum)
     
 
-def abc2pandas(fname):
+def abc2pandas(fname, encoding='iso8859'):
     im = isMeta()
-    
-    with open(fname, 'r') as fobj:
+    with open(fname, 'r', encoding=encoding) as fobj:
         data = pd.concat([parseabc(lines)
                           for head, lines in groupby(fobj, GroupByX().findsentinel)], axis=1)
     return data
